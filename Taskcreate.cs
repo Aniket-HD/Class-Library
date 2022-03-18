@@ -36,7 +36,23 @@ namespace Class_Library
                 try
                 {
                     // Plug-in business logic goes here.
-                    
+                    //in memory object of an entity to be created
+                    Entity taskRecord = new Entity("task");
+                    //setting up attributes
+                    taskRecord.Attributes.Add("subject", "Follow up");
+                    taskRecord.Attributes.Add("description", "Please follow up with the contact.");
+                    //setting up attribues with date
+                    taskRecord.Attributes.Add("scheduledend", DateTime.Now.AddDays(2));
+                    //setting up attribues with option set
+                    taskRecord.Attributes.Add("prioritycode", new OptionSetValue(2));
+                    //Setting up parent record or lookup
+                    //taskRecord.Attributes.Add("regardingobjectid",new EntityReference("entity", entity.Id));
+                    //or easy way would be
+                    taskRecord.Attributes.Add("regardingobjectid", entity.ToEntityReference());
+                    //in above line Guid is a prerequisite so pipeline will only get Guid after main event i.e., contact creation
+                    //therefore this plugin has to be registed on post operation stage
+
+                    Guid taskGuid = service.Create(taskRecord);
                 }
 
                 catch (FaultException<OrganizationServiceFault> ex)
@@ -52,5 +68,4 @@ namespace Class_Library
             }
         }
     }
-}
 }
