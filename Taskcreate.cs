@@ -51,7 +51,7 @@ namespace Class_Library
                     taskRecord.Attributes.Add("regardingobjectid", entity.ToEntityReference());
                     //in above line Guid is a prerequisite so pipeline will only get Guid after main event i.e., contact creation
                     //therefore this plugin has to be registed on post operation stage
-
+                    //Now push the created object
                     Guid taskGuid = service.Create(taskRecord);
                 }
 
