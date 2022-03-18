@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DuplicateCheck.cs" />
     <Compile Include="Taskcreate.cs" />
     <Compile Include="Helloworld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
